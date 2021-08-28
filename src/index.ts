@@ -1,5 +1,3 @@
-function teste(x: number): number {
-    return x + x;
-}
+import { teste } from "@src/teste";
 
-console.log(teste(1));
+console.log(teste);
