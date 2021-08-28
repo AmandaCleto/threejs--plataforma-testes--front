@@ -1,0 +1,25 @@
+{
+    "name": "treejs--plataforma-testes--front",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "private": true,
+    "scripts": {
+        "build": "webpack --mode=production"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AmandaCleto/treejs--plataforma-testes--front.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/AmandaCleto/treejs--plataforma-testes--front/issues"
+    },
+    "homepage": "https://github.com/AmandaCleto/treejs--plataforma-testes--front#readme",
+    "devDependencies": {
+        "webpack": "^5.51.1",
+        "webpack-cli": "^4.8.0"
+    }
+}
