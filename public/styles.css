@@ -1,0 +1,6 @@
+body {
+    all: unset;
+}
+canvas {
+    display: block;
+}
