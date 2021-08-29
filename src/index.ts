@@ -1,31 +1,41 @@
-import * as THREE from 'three';
+import Scene from '@src/core/Scene';
+import Camera from '@src/core/Camera';
+import Renderer from '@src/core/Renderer';
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+import Listeners from '@src/app/listeners';
+import Objects from '@src/app/objects';
+class Core {
+    protected scene: Scene;
+    protected camera: Camera;
+    protected renderer: Renderer;
 
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-renderer.setPixelRatio(window.devicePixelRatio);
-document.body.appendChild( renderer.domElement );
+    protected listeners: Listeners;
+    protected objects: Objects;
 
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-});
+    constructor() {
+        /* core */
+        this.scene = new Scene();
+        this.camera = new Camera();
+        this.renderer = new Renderer();
 
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+        /* app */
+        this.listeners = new Listeners(this.camera, this.renderer);
+        this.objects = new Objects(this.scene);
 
-camera.position.z = 5;
+        this.setAnimate();
+    }
 
+    private setAnimate(): void {
+        const animate = () => {
+            requestAnimationFrame(animate);
 
-function animate() {
-	requestAnimationFrame( animate );
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-	renderer.render( scene, camera );
-}
-animate();
+            /* animation */
+            this.objects.cube.setAnimate();
+
+            this.renderer.render(this.scene, this.camera);
+        };
+        animate();
+    }
+};
+
+new Core;
